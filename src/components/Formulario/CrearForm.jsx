@@ -1,7 +1,6 @@
 import { useState } from "react";
 
-function CrearForm({CrearTweet}) {
-  
+function CrearForm({ CrearTweet }) {
   const [usuario, setUsuario] = useState("");
   const [tweet, setTweet] = useState("");
   const [errMsg, setErrMsg] = useState(false);
@@ -23,7 +22,10 @@ function CrearForm({CrearTweet}) {
       favorito: false,
     };
 
-		CrearTweet(data);
+    CrearTweet(data);
+
+    setUsuario("");
+    setTweet("");
   };
 
   return (
@@ -40,6 +42,7 @@ function CrearForm({CrearTweet}) {
               }
               id="usuario"
               placeholder="Usuario"
+							value={usuario}
               onChange={(e) => setUsuario(e.target.value)}
             />
             <label htmlFor="usuario">Usuario</label>
@@ -53,6 +56,7 @@ function CrearForm({CrearTweet}) {
               }
               id="tweet"
               placeholder="Tweet"
+							value={tweet}
               onChange={(e) => setTweet(e.target.value)}
             ></textarea>
             <label htmlFor="tweet">Tweet</label>

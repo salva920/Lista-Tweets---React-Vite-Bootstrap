@@ -13,7 +13,7 @@ function App() {
 
   const MarcarFavorito = (tweet) => {
     setListaTweets(
-      setListaTweets.map((t) =>
+      listaTweets.map((t) =>
         t.id == tweet.id ? { ...t, favorito: !t.favorito } : t
       )
     );
@@ -44,7 +44,7 @@ function App() {
             <CardForm CrearTweet={CrearTweet}/>
           </div>
           <div className="col-12 col-sm-12 col-md-6 mb-5">
-            <ListaTweets listaTweets={listaTweets}/>
+            <ListaTweets listaTweets={listaTweets} MarcarFavorito={MarcarFavorito} />
           </div>
         </div>
       </div>
