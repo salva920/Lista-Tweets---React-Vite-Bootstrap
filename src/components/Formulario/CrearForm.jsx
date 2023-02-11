@@ -5,6 +5,7 @@ function CrearForm({ CrearTweet }) {
   const [tweet, setTweet] = useState("");
   const [errMsg, setErrMsg] = useState(false);
 
+  // valida los datos del formulario para crear un tweet a traves de la funcion CrearTweet obtenida desde App.jsx
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -54,6 +55,7 @@ function CrearForm({ CrearTweet }) {
                   ? "form-control is-invalid"
                   : "form-control"
               }
+              style={{height: '100px', minHeight: '50px'}}
               id="tweet"
               placeholder="Tweet"
               value={tweet}

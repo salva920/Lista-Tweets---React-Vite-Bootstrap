@@ -14,11 +14,15 @@ function Tweet({ tweet, MarcarFavorito, EliminarTweet }) {
             className={
               tweet.favorito ? "btn btn-primary" : "btn btn-outline-primary"
             }
-            onClick={()=>MarcarFavorito(tweet)}
+            onClick={() => MarcarFavorito(tweet)}
           >
             Favorito
           </button>
-          <button type="button" className="ms-3 btn btn-danger" onClick={() => EliminarTweet(tweet.id)}>
+          <button
+            type="button"
+            className="ms-3 btn btn-danger"
+            onClick={() => EliminarTweet(tweet.id)}
+          >
             Eliminar
           </button>
         </div>
