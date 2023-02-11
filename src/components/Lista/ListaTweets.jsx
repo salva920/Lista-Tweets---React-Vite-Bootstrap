@@ -1,10 +1,15 @@
 import Tweet from "./Tweet";
 
-function ListaTweet({ listaTweets, MarcarFavorito }) {
+function ListaTweet({ listaTweets, MarcarFavorito, EliminarTweet }) {
   return (
     <div>
       {listaTweets.map((item) => (
-        <Tweet key={item.id} tweet={item} MarcarFavorito={MarcarFavorito} />
+        <Tweet
+          key={item.id}
+          tweet={item}
+          MarcarFavorito={MarcarFavorito}
+          EliminarTweet={EliminarTweet}
+        />
       ))}
     </div>
   );

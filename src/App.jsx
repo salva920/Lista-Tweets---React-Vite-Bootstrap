@@ -19,11 +19,15 @@ function App() {
     );
   };
 
+  const EliminarTweet = (id) => {
+    setListaTweets(listaTweets.filter((t) => t.id != id));
+  };
+
   useEffect(() => {
     let data = localStorage.getItem("tweets");
     if (!data) {
       setListaTweets([]);
-      return
+      return;
     }
     setListaTweets(JSON.parse(data));
   }, []);
@@ -41,10 +45,14 @@ function App() {
 
         <div className="row my-3">
           <div className="col-12 col-sm-12 col-md-6 mb-5">
-            <CardForm CrearTweet={CrearTweet}/>
+            <CardForm CrearTweet={CrearTweet} />
           </div>
           <div className="col-12 col-sm-12 col-md-6 mb-5">
-            <ListaTweets listaTweets={listaTweets} MarcarFavorito={MarcarFavorito} />
+            <ListaTweets
+              listaTweets={listaTweets}
+              MarcarFavorito={MarcarFavorito}
+              EliminarTweet={EliminarTweet}
+            />
           </div>
         </div>
       </div>

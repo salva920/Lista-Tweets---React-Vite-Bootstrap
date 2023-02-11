@@ -1,4 +1,4 @@
-function Tweet({ tweet, MarcarFavorito }) {
+function Tweet({ tweet, MarcarFavorito, EliminarTweet }) {
   return (
     <div>
       <div className="card mx-3 mb-5 border-primary">
@@ -18,7 +18,7 @@ function Tweet({ tweet, MarcarFavorito }) {
           >
             Favorito
           </button>
-          <button type="button" className="ms-3 btn btn-danger">
+          <button type="button" className="ms-3 btn btn-danger" onClick={() => EliminarTweet(tweet.id)}>
             Eliminar
           </button>
         </div>
