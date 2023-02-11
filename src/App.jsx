@@ -6,9 +6,26 @@ import ListaTweets from "./components/Lista/ListaTweets";
 
 function App() {
   const [listaTweets, setListaTweets] = useState([]);
+  const [mensaje, setMensaje] = useState({
+    estatus: false,
+    msg: "",
+    clase: "",
+  });
 
   const CrearTweet = (tweet) => {
     setListaTweets([...listaTweets, tweet]);
+    setMensaje({
+      estatus: true,
+      msg: "Un nuevo Tweet ha sido creado",
+      clase: "alert alert-primary",
+    });
+    setTimeout(() => {
+      setMensaje({
+        estatus: false,
+        msg: "",
+        clase: "",
+      });
+    }, 5000);
   };
 
   const MarcarFavorito = (tweet) => {
@@ -20,7 +37,24 @@ function App() {
   };
 
   const EliminarTweet = (id) => {
-    setListaTweets(listaTweets.filter((t) => t.id != id));
+    const confirmar = confirm("Seguro que desea eliminar");
+    if (confirmar){
+      setListaTweets(listaTweets.filter((t) => t.id != id));
+
+      setMensaje({
+        estatus: true,
+        msg: "Se ha eliminado un tweet",
+        clase: "alert alert-danger",
+      });
+      setTimeout(() => {
+        setMensaje({
+          estatus: false,
+          msg: "",
+          clase: "",
+        });
+      }, 5000);
+    }
+    
   };
 
   useEffect(() => {
@@ -38,6 +72,13 @@ function App() {
 
   return (
     <div className="bg-secondary-subtle">
+      {mensaje.estatus ? (
+        <div className={mensaje.clase} role="alert">
+         {mensaje.msg}
+        </div>
+      ) : (
+        ""
+      )}
       <div className="container ">
         <header className="my-3 text-center text-primary">
           <h1>Lista de Tweets</h1>
@@ -48,11 +89,17 @@ function App() {
             <CardForm CrearTweet={CrearTweet} />
           </div>
           <div className="col-12 col-sm-12 col-md-6 mb-5">
-            <ListaTweets
-              listaTweets={listaTweets}
-              MarcarFavorito={MarcarFavorito}
-              EliminarTweet={EliminarTweet}
-            />
+            {listaTweets.length < 1 ? (
+              <div className="alert alert-primary mx-3" role="alert">
+                <strong>No</strong> se han registrado Tweets.
+              </div>
+            ) : (
+              <ListaTweets
+                listaTweets={listaTweets}
+                MarcarFavorito={MarcarFavorito}
+                EliminarTweet={EliminarTweet}
+              />
+            )}
           </div>
         </div>
       </div>

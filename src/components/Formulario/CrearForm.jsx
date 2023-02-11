@@ -42,7 +42,7 @@ function CrearForm({ CrearTweet }) {
               }
               id="usuario"
               placeholder="Usuario"
-							value={usuario}
+              value={usuario}
               onChange={(e) => setUsuario(e.target.value)}
             />
             <label htmlFor="usuario">Usuario</label>
@@ -56,7 +56,7 @@ function CrearForm({ CrearTweet }) {
               }
               id="tweet"
               placeholder="Tweet"
-							value={tweet}
+              value={tweet}
               onChange={(e) => setTweet(e.target.value)}
             ></textarea>
             <label htmlFor="tweet">Tweet</label>
@@ -71,7 +71,14 @@ function CrearForm({ CrearTweet }) {
             </button>
           </div>
           <div className="col">
-            <button type="reset" className="btn btn-secondary w-100 mx-2">
+            <button
+              type="reset"
+              className="btn btn-secondary w-100 mx-2"
+              onClick={() => {
+                setUsuario("");
+                setTweet("");
+              }}
+            >
               Limpiar
             </button>
           </div>
