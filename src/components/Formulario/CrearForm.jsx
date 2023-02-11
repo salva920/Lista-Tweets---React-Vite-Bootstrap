@@ -1,22 +1,59 @@
-function CrearForm() {
+import { useState } from "react";
+
+function CrearForm({CrearTweet}) {
+  
+  const [usuario, setUsuario] = useState("");
+  const [tweet, setTweet] = useState("");
+  const [errMsg, setErrMsg] = useState(false);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    if (usuario.trim() == "" || tweet.trim() == "") {
+      setErrMsg(true);
+      return;
+    }
+
+    setErrMsg(false);
+
+    const data = {
+      id: new Date().getTime(),
+      usuario,
+      tweet,
+      favorito: false,
+    };
+
+		CrearTweet(data);
+  };
+
   return (
-    <form>
+    <form onSubmit={handleSubmit}>
       <div className="card-body ">
         <div className="mb-3">
           <div className="form-floating">
             <input
               type="text"
-              className="form-control mb-3"
+              className={
+                errMsg && usuario.trim() == ""
+                  ? "form-control mb-3 is-invalid"
+                  : "form-control mb-3"
+              }
               id="usuario"
               placeholder="Usuario"
+              onChange={(e) => setUsuario(e.target.value)}
             />
             <label htmlFor="usuario">Usuario</label>
           </div>
           <div className="form-floating">
             <textarea
-              className="form-control"
+              className={
+                errMsg && tweet.trim() == ""
+                  ? "form-control is-invalid"
+                  : "form-control"
+              }
               id="tweet"
               placeholder="Tweet"
+              onChange={(e) => setTweet(e.target.value)}
             ></textarea>
             <label htmlFor="tweet">Tweet</label>
           </div>
@@ -35,6 +72,13 @@ function CrearForm() {
             </button>
           </div>
         </div>
+        {errMsg ? (
+          <div className="alert alert-danger mt-3" role="alert">
+            Complete todos los campos.
+          </div>
+        ) : (
+          ""
+        )}
       </div>
     </form>
   );
